@@ -1,6 +1,6 @@
 ## Running Example# Asyncio Programming Challenge
 
-This is a take-home programming challenge that's meant to test your ability to program (or learn to program)[asynchronously](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming). It uses `asyncio` to implement its concurrency. Put simply, asynchronous code is code that doesn't run top-to-bottom, start-to-finish, one line after another-- it runs out of order, with different sections logically executing at the same time. 
+This is a take-home programming challenge that's meant to test your ability to program (or learn to program) [asynchronously](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming). It uses `asyncio` to implement its concurrency. Put simply, asynchronous code is code that doesn't run top-to-bottom, start-to-finish, one line after another-- it runs out of order, with different sections logically executing at the same time. 
 
 If you are new to `asyncio`, you may find the following links useful:
 
