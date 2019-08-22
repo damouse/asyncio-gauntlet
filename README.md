@@ -47,11 +47,11 @@ These challenges scale in difficulty, and you are not meant to solve them all. E
 
 You do not need to use any other parts of the `asyncio` module to complete this challenge. The solutions to these tasks can be implemented in a few lines apiece.
 
+Do not modify the client in any task, but do read it over and try to understand it-- the code there will be helpful in solving some of these tasks. 
+
 ### Task 1: Chatroom
 
 You can connect more than one client to the echoserver at once, but each client will only hear back their own echo. Convert the echo server to a chatroom, so two seperate terminals connected as clients can send messages back and forth. When you connect two clients to a single server and type into one of the clients, you should see your message in the other client. 
-
-Do not modify the client.
 
 ### Task 2: Timestamps
 
@@ -64,8 +64,9 @@ For example, when one client connects, then three seconds later sends a message 
 6 < or maybe pasta?
 ```
 
-Do not modify the client.
+### Task 3: Pagers
 
-### Task 3: Round-Trip Timestamps
+Add a feature in the server to page users to get their attention. If any client sends the text string `page` to the server, the server should send `PAGING` to every connected client once a second until *another* client types anything-- not the original client. The client who sent the page must still be able to send normal chat messages while a page is active, and they should not see the `PAGING` alert printed in their chat window. 
 
+All the function calls required to implement this have been used at least once during the demo. 
 
