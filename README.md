@@ -150,6 +150,4 @@ Private chat ended.
 
 These are tricky questions and not part of the challenge, but if you understand asyncio very well you should be able to answer them. 
 
-- Why does a client disconnect automatically after about a minute if they don't type anything? Which line in the original demo is the cause of this?
-- What does `await asyncio.sleep(0.1)` do on line 18 of `client.py`?
 - How many clients can connect at once? 
