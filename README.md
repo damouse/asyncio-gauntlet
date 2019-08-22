@@ -225,7 +225,8 @@ await websockets.connect("")
 await socket.send("message")
 message = await socket.recv()
 
-await asyncio.sleep(0.1)
+# This one isn't used in the demo. It casues asyncio to wait for 1 second.
+await asyncio.sleep(1)
 ```
 
 Websockets is a networking protocol that exchanges string messages one at at time. Picture a socket as a pipe that both the client and the server hold. When one side calls `send` and passes a string, it appears on the other side which calls `recv` (or receive) to pick it up. These calls block because send takes time to write something to the network, and receive will wait until there's a message to return it.
@@ -298,8 +299,3 @@ Private chat ended.
 ```
 
 
-### Tricky Questions
-
-These are tricky questions and not part of the challenge, but if you understand asyncio very well you should be able to answer them. 
-
-- How many clients can connect at once? 
