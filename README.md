@@ -118,8 +118,8 @@ Add timestamps on messages from other users that show the number of seconds that
 For example, when one client connects, then three seconds later sends a message `pizza later?`, waits 3 seconds, then `or maybe pasta` the other client should see:
 
 ```
-3 < pizza later? 
-6 < or maybe pasta?
+< 3 pizza later? 
+< 6 or maybe pasta?
 ```
 
 The `3` indicates the first message arrived 3 seconds after that client connected. 
@@ -271,7 +271,7 @@ Add a feature in the server to page users to get their attention. If any client 
 
 ### Task 4: Private Chat
 
-Add a private chat feature that lets two users enter a private chat in such a way that they only see each other's messages, and no other connected client can see their messages. First, add names to clients and broadcast their name to the chatroom when they connect. Then create a command `invite <name>` in the server that will move another user to a private chat and tell them who they're chatting with. Users should be able to leave a chat with `leave`. If either user disconnects from the server, the other user should be dropped back into the regular chatroom. 
+Add a private chat feature that lets two users enter a private chat in such a way that they only see each other's messages, and no other connected client can see their messages. The "name" associated with each user should be some number that doesn't conflict with any other user's ID and stays fixed while the user is connected. If that client disconnects and reconnects, they should get a new ID thats never been used. Then create a command `invite <name>` in the server that will move another user to a private chat and tell them who they're chatting with. Users should be able to leave a chat with `leave`. If either user disconnects from the server, the other user should be dropped back into the regular chatroom. 
 
 For example, if client 1 connects before client 2, client 1 should see:
 
