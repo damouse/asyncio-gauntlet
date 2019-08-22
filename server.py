@@ -13,6 +13,7 @@ async def accept(socket, path):
 
     try:
         while True:
+            # Read messages off the socket as they arrive and send them back to the sender immediately
             message = await socket.recv()
             await socket.send(message)
     except:

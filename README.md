@@ -151,3 +151,4 @@ Private chat ended.
 A tricky question or two.
 
 - Why does a client disconnect automatically after about a minute if they don't type anything? Which line in the original demo is the cause of this?
+- How many clients can connect at once? 
