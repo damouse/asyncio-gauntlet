@@ -37,15 +37,62 @@ python3 client.py
 < Hello!
 ```
 
+
 ## Background
 
-Some background on asyncio: async/await, create_task. 
+This section explains the basic concepts used in this challenge to keep this challenge from being about `asyncio` or `websockets` specifically. Skip down to the tasks section below if you want to get started. 
 
-## Challenge
+The first rule of `asyncio` is to never block with normal python code. "Blocking" means to stop execution at a section of code and not return. The following is a blocking section of code:
+
+```
+time.sleep(10)
+```
+
+So is:
+
+```
+while True:
+	pass
+```
+
+Asyncio provides a mechanism for logically blocking with `async`/`await`. Functions marked with `async` **might** block. For example:
+
+```
+async def good_sleep():
+	await asyncio.sleep(1)
+
+...
+
+await good_sleep()
+```
+
+Whenever you invoke an asynchronous function you must include the `await` in front of the function call, which waits for the asynchronous call to return. The difference between this and regular python blocking is that asyncio can run other tasks while one task is blocked. Note that `await` doesn't mean a function will logically block, just that it might. Only special I/O calls actually block. All the calls in this demo that block are shown below:
+
+```
+await websockets.connect("")
+await socket.send("message")
+message = await socket.recv()
+
+await asyncio.sleep(0.1)
+```
+
+Websockets is a networking protocol that exchanges string messages one at at time. Picture a socket as a pipe that both the client and the server hold. When one side calls `send` and passes a string, it appears on the other side which calls `recv` (or receive) to pick it up. These calls block because send takes time to write something to the network, and receive will wait until there's a message to return it.
+
+When these calls are awaited, other tasks can run. Line 13 of client.py demonstrates how to make a new task:
+
+```
+asyncio.get_event_loop().create_task(print_results(socket))
+```
+
+Making a new task means peeling off a new logical point of execution. In other words, it makes your code run in more than one place. Creating a task does not block-- it starts the new task in its own time. 
+
+Note that `server.py` automatically creates a new task every time a client connects and `accept` is called. 
+
+## Tasks
 
 These challenges scale in difficulty, and you are not meant to solve them all. Each step is meant to test your understanding of concurrent execution, not Python, networking, or websockets. You can solve each of these with only the imports present in the base example, but feel free to use whatever libraries or resources you want. Don't use `threading` or `multiprocessing`, though, thats cheating.
 
-You do not need to use any other parts of the `asyncio` module to complete this challenge. The solutions to these tasks can be implemented in a few lines apiece.
+You do not need to use any other parts of the `asyncio` module to complete this challenge. The solutions to these tasks can be implemented in a few lines apiece. The function calls and code patterns needed to complete these tasks have largely already been used once 
 
 Do not modify the client in any task, but do read it over and try to understand it-- the code there will be helpful in solving some of these tasks. 
 
@@ -55,7 +102,7 @@ You can connect more than one client to the echoserver at once, but each client 
 
 ### Task 2: Timestamps
 
-Add a timestamp feature so each client can see how long its been since *that user* connected. Use `round(time.time())`, which returns Unix time in seconds, as a source of time. The `round()` call just gets rid of the decimal values. Don't forget to `import time`.
+Add timestamps on messages from other users that show the number of seconds that have elapsed since *that user* connected. 
 
 For example, when one client connects, then three seconds later sends a message `pizza later?`, waits 3 seconds, then `or maybe pasta` the other client should see:
 
@@ -64,9 +111,43 @@ For example, when one client connects, then three seconds later sends a message 
 6 < or maybe pasta?
 ```
 
+The `3` indicates the first message arrived 3 seconds after that client connected. 
+
 ### Task 3: Pagers
 
 Add a feature in the server to page users to get their attention. If any client sends the text string `page` to the server, the server should send `PAGING` to every connected client once a second until *another* client types anything-- not the original client. The client who sent the page must still be able to send normal chat messages while a page is active, and they should not see the `PAGING` alert printed in their chat window. 
 
-All the function calls required to implement this have been used at least once during the demo. 
+### Task 4: Private Chat
 
+Add a private chat feature that lets two users enter a private chat in such a way that they only see each other's messages, and no other connected client can see their messages. First, add names to clients and broadcast their name to the chatroom when they connect. Then create a command `invite <name>` in the server that will move another user to a private chat and tell them who they're chatting with. Users should be able to leave a chat with `leave`. If either user disconnects from the serer, the other user should be dropped back into the regular chatroom. 
+
+For example, if client 1 connects before client 2, client 1 should see:
+
+```
+< Client 2 connected
+```
+
+Then if client 1 types `invite 1` into the chat, client 2 should see:
+
+```
+Private chatting with Client 1
+```
+
+and client 1 should see:
+
+```
+Private chatting with Client 2
+```
+
+If client 2 types `leave`, client 1 should see:
+
+```
+Private chat ended.
+```
+
+
+### Tricky Questions
+
+A tricky question or two.
+
+- Why does a client disconnect automatically after about a minute if they don't type anything? Which line in the original demo is the cause of this?

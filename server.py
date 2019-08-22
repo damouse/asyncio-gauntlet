@@ -1,14 +1,15 @@
 import asyncio
 import websockets
+import time
 
-# Keeps track of active connections
 connections = []
+start_time = round(time.time())
 
 
 async def accept(socket, path):
-    """ Called everytime a new client connects to the server """
+    """ Called everytime a new client connects to the server in a new task, which run concurrently. """
     connections.append(socket)
-    print('New connection, total', len(connections))
+    print(f'New connection after {round(time.time()) - start_time}s, total connections: {len(connections)}')
 
     try:
         while True:
