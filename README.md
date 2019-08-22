@@ -1,14 +1,3 @@
-# Asyncio Programming Challenge
-
-This is a take-home programming challenge that's meant to test your ability to program (or learn to program)[asynchronously](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming). It uses `asyncio` to implement its concurrency. Put simply, asynchronous code is code that doesn't run top-to-bottom, start-to-finish, one line after another-- it runs out of order, with different sections logically executing at the same time. 
-
-If you are new to `asyncio`, you may find the following links useful:
-
-- [RealPython Walkthrough](https://realpython.com/async-io-python/)
-- [Websockets Basic Example (used as the base for this test)](https://websockets.readthedocs.io/en/stable/intro.html)
-
-Here is implemented a simple echo server using `websockets`, a library for exchanging string messages over a network. You could run this example over the internet if you wanted to, but for this challenge it's easier to just run both the server and the client locally on two terminals. 
-
 ## Running Example# Asyncio Programming Challenge
 
 This is a take-home programming challenge that's meant to test your ability to program (or learn to program)[asynchronously](https://en.wikipedia.org/wiki/Asynchrony_(computer_programming). It uses `asyncio` to implement its concurrency. Put simply, asynchronous code is code that doesn't run top-to-bottom, start-to-finish, one line after another-- it runs out of order, with different sections logically executing at the same time. 
