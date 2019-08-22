@@ -92,7 +92,7 @@ Note that `server.py` automatically creates a new task every time a client conne
 
 These challenges scale in difficulty, and you are not meant to solve them all. Each step is meant to test your understanding of concurrent execution, not Python, networking, or websockets. You can solve each of these with only the imports present in the base example, but feel free to use whatever libraries or resources you want. Don't use `threading` or `multiprocessing`, though, thats cheating.
 
-You do not need to use any other parts of the `asyncio` module to complete this challenge. The solutions to these tasks can be implemented in a few lines apiece. The function calls and code patterns needed to complete these tasks have largely already been used once 
+You do not need to use any other parts of the `asyncio` module to complete this challenge. The solutions to these tasks can be implemented in a few lines apiece. The function calls and code patterns needed to complete these tasks have largely already been used once. 
 
 Do not modify the client in any task, but do read it over and try to understand it-- the code there will be helpful in solving some of these tasks. 
 
@@ -148,7 +148,8 @@ Private chat ended.
 
 ### Tricky Questions
 
-A tricky question or two.
+These are tricky questions and not part of the challenge, but if you understand asyncio very well you should be able to answer them. 
 
 - Why does a client disconnect automatically after about a minute if they don't type anything? Which line in the original demo is the cause of this?
+- What does `await asyncio.sleep(0.1)` do on line 18 of `client.py`?
 - How many clients can connect at once? 
