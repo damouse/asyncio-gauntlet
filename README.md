@@ -119,7 +119,7 @@ Add a feature in the server to page users to get their attention. If any client 
 
 ### Task 4: Private Chat
 
-Add a private chat feature that lets two users enter a private chat in such a way that they only see each other's messages, and no other connected client can see their messages. First, add names to clients and broadcast their name to the chatroom when they connect. Then create a command `invite <name>` in the server that will move another user to a private chat and tell them who they're chatting with. Users should be able to leave a chat with `leave`. If either user disconnects from the serer, the other user should be dropped back into the regular chatroom. 
+Add a private chat feature that lets two users enter a private chat in such a way that they only see each other's messages, and no other connected client can see their messages. First, add names to clients and broadcast their name to the chatroom when they connect. Then create a command `invite <name>` in the server that will move another user to a private chat and tell them who they're chatting with. Users should be able to leave a chat with `leave`. If either user disconnects from the server, the other user should be dropped back into the regular chatroom. 
 
 For example, if client 1 connects before client 2, client 1 should see:
 
